@@ -1,4 +1,5 @@
 class OccupationsController < ApplicationController
+    before_action :authenticate_user!
     def index
         @occupations = Occupation.all
         render 'index'
