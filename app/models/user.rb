@@ -5,4 +5,6 @@ class User < ApplicationRecord
         :rememberable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
   validates :username, :presence => true, :uniqueness => true, :length => { :in => 4..255 }
+
+  has_many :game_set
 end
