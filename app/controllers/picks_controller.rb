@@ -1,7 +1,8 @@
 class PicksController < ApplicationController
     before_action :authenticate_user!
     def index
-        @picks = Pick.all
+        @user = current_user
+        @picks = @user.game_set.first.picks
         render 'index'
     end
 
