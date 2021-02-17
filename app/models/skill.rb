@@ -1,7 +1,7 @@
 class Skill < ApplicationRecord
     has_and_belongs_to_many :occupations
     has_and_belongs_to_many :picks
-    has_one :game_set
+    belongs_to :game_set, dependent: :destroy
 
     validates :name, :presence => true, :length => { :in => 4..50 }
     validates :baseValue, :presence => true, numericality: {
