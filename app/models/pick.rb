@@ -10,4 +10,30 @@ class Pick < ApplicationRecord
     }
     validates :pickAny, inclusion: [true, false]
     validates :name, presence: true, :length => { :in => 5..50 }
+
+
+    validate :check_if_skills_are_in_gameset, :check_minimum_skills
+
+    def check_if_skills_are_in_gameset
+        if not self.pickAny
+            self.skills.each do |s|
+                if s.game_set_id != self.game_set_id
+                    errors.add(:skills, 'skill are not in same game set')  
+                end
+            end
+        end 
+    end
+
+    def check_minimum_skills
+        if not self.pickAny
+            if self.skills.length <= self.numberOfPicks
+                errors.add(:skills, 'not enough skills to pick')
+            end
+        end
+
+        rescue ArgumentError
+
+    end
+
+
 end

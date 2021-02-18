@@ -4,6 +4,8 @@ class PickTest < ActiveSupport::TestCase
 
   test "pick saves correctly" do
     pick = Pick.new(name: "One interpersonal", numberOfPicks: 1, pickAny: false, game_set_id: 1)
+    pick.skills << skills(:briga)
+    pick.skills << skills(:labia)
     assert pick.save
   end
 
@@ -50,6 +52,23 @@ class PickTest < ActiveSupport::TestCase
   test "pick should not save without a game set association" do
     pick = Pick.new(name: "One interpersonal", numberOfPicks: 1, pickAny: false)
     assert_not pick.save
+  end
+
+  test "pick should not save if one of the skills is not from the same gameset" do
+    pick = Pick.new(name: "One interpersonal", numberOfPicks: 1, pickAny: false, game_set_id: 1)
+    pick.skills << skills(:briga)
+    pick.skills << skills(:computadores)
+    assert_not pick.save
+  end
+
+  test "pick should not save without any skills and pickAny false" do
+    pick = Pick.new(name: "One interpersonal", numberOfPicks: 1, pickAny: false, game_set_id: 1)
+    assert_not pick.save
+  end
+
+  test "pick should save without skills when pickAny is true" do
+    pick = Pick.new(name: "Any one", numberOfPicks: 1, pickAny: true, game_set_id: 1)
+    assert pick.save
   end
 
 end

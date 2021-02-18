@@ -4,3 +4,8 @@ default:
   id: 1
   name: Default
   user_id: 1
+
+modern:
+  id: 2
+  name: Modern
+  user_id: 1

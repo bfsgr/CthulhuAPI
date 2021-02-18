@@ -1,1 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+briga:
+  id: 1
+  name: "Briga"
+  baseValue: 25
+  game_set_id: 1
+
+labia:
+  id: 2
+  name: "Lábia"
+  baseValue: 5
+  game_set_id: 1
+
+computadores:
+  id: 3
+  name: "Usar computadores"
+  baseValue: 5
+  game_set_id: 2
