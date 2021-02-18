@@ -71,4 +71,10 @@ class PickTest < ActiveSupport::TestCase
     assert pick.save
   end
 
+  test "pick should not save with skills when pickAny is true" do
+    pick = Pick.new(name: "Any one", numberOfPicks: 1, pickAny: true, game_set_id: 1)
+    pick.skills << skills(:briga)
+    assert_not pick.save
+  end
+
 end

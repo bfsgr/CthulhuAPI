@@ -29,6 +29,10 @@ class Pick < ApplicationRecord
             if self.skills.length <= self.numberOfPicks
                 errors.add(:skills, 'not enough skills to pick')
             end
+        else
+            if self.skills.length != 0
+                errors.add(:skills, "shouldn't have skills since pickAny is true")
+            end
         end
 
         rescue ArgumentError
