@@ -9,4 +9,5 @@ class Pick < ApplicationRecord
         greater_than: 0
     }
     validates :pickAny, inclusion: [true, false]
+    validates :name, presence: true, :length => { :in => 5..50 }
 end

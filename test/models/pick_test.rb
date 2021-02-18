@@ -6,6 +6,26 @@ class PickTest < ActiveSupport::TestCase
     pick = Pick.new(name: "One interpersonal", numberOfPicks: 1, pickAny: false, game_set_id: 1)
     assert pick.save
   end
+
+  test "pick should not save without a name" do
+    pick = Pick.new(numberOfPicks: 1, pickAny: false, game_set_id: 1)
+    assert_not pick.save
+  end
+
+  test "pick should not save with a name less than 5 characters" do
+    pick = Pick.new(name: "", numberOfPicks: 1, pickAny: false, game_set_id: 1)
+    assert_not pick.save
+  end
+
+  test "pick should not save with a name more than 50 characters" do
+    pick = Pick.new(
+      name: 'ANonfugaexpeditaautMole'\
+      'rumperspiciatisvoluptatemfug',
+      numberOfPicks: 1,
+      pickAny: false,
+      game_set_id: 1)
+    assert_not pick.save
+  end
   
   test "pick should not save without number of picks" do
     pick = Pick.new(name: "One interpersonal", pickAny: false, game_set_id: 1)
