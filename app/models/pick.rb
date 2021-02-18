@@ -11,9 +11,9 @@ class Pick < ApplicationRecord
     validates :pickAny, inclusion: [true, false]
     validates :name, presence: true, :length => { :in => 5..50 }
 
-
     validate :check_if_skills_are_in_gameset, :check_minimum_skills
 
+    #check if the skills belong to the same gameset as the pick
     def check_if_skills_are_in_gameset
         if not self.pickAny
             self.skills.each do |s|
@@ -24,6 +24,8 @@ class Pick < ApplicationRecord
         end 
     end
 
+    #check if the number of skills associated with this pick is correct given
+    #the number of picks and the pick any flag
     def check_minimum_skills
         if not self.pickAny
             if self.skills.length <= self.numberOfPicks
