@@ -12,4 +12,4 @@ interpessoal_modern:
   numberOfPicks: 2
   pickAny: false
   game_set: modern
-  skills: [labia, persuasao, intimidacao, charme]
+  skills: [labia_m, persuasao_m, intimidacao_m, charme_m]
