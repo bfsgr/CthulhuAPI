@@ -1,1 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+interpessoal:
+  name: "2 Interpessoais"
+  numberOfPicks: 2
+  pickAny: false
+  game_set: default
+  skills: [labia, persuasao, intimidacao, charme]
+
+interpessoal_modern:
+  name: "2 Interpessoais"
+  numberOfPicks: 2
+  pickAny: false
+  game_set: modern
+  skills: [labia, persuasao, intimidacao, charme]

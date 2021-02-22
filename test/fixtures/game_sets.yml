@@ -1,11 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 default:
-  id: 1
   name: Default
-  user_id: 1
+  user: first
 
 modern:
-  id: 2
   name: Modern
-  user_id: 1
+  user: first

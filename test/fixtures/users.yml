@@ -5,7 +5,6 @@
 # below each fixture, per the syntax in the comments below
 #
 first: 
-  id: 1
   username: bfsgr
   email: bfsgr@example.com
   encrypted_password: asudhuhoqwidjasuhduasd
