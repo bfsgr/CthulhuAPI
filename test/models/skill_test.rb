@@ -49,5 +49,27 @@ class SkillTest < ActiveSupport::TestCase
     skill = Skill.new(name: "Medicina", baseValue: 4.12, game_set: game_sets(:default))
     assert_not skill.save
   end
+
+  test "two skills should not save with the same name in the same game set" do
+    skill1 = Skill.new(name: "Medicina", baseValue: 5, game_set: game_sets(:default))
+    
+    assert skill1.save
+    
+    skill2 = Skill.new(name: "Medicina", baseValue: 5, game_set: game_sets(:default))
+
+    assert_not skill2.save
+  end
+
+  test "two skills should save with the same name in different game sets" do
+    skill1 = Skill.new(name: "Medicina", baseValue: 5, game_set: game_sets(:default))
+    
+    assert skill1.save
+    
+    skill2 = Skill.new(name: "Medicina", baseValue: 5, game_set: game_sets(:modern))
+
+    assert skill2.save
+  end
+
+
   
 end

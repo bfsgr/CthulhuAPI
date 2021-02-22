@@ -76,4 +76,32 @@ class PickTest < ActiveSupport::TestCase
     pick.skills << skills(:briga)
     assert_not pick.save
   end
+
+  test "two picks should not save with the same name in the same game set" do
+    pick1 = Pick.new(name: "Any one", numberOfPicks: 1, pickAny: true,  game_set: game_sets(:default))
+    
+    assert pick1.save
+    
+    pick2 = Pick.new(name: "Any one", numberOfPicks: 1, pickAny: true,  game_set: game_sets(:default))
+    
+    assert_not pick2.save
+  end
+  
+  test "two picks should save with the same name in different game sets" do
+    pick1 = Pick.new(name: "2 interpessoais", numberOfPicks: 2, pickAny: false,  game_set: game_sets(:default))
+    pick1.skills << skills(:labia)
+    pick1.skills << skills(:persuasao)
+    pick1.skills << skills(:charme)
+    pick1.skills << skills(:intimidacao)
+    
+    assert pick1.save
+    
+    pick2 = Pick.new(name: "2 interpessoais", numberOfPicks: 2, pickAny: false,  game_set: game_sets(:modern))
+    pick2.skills << skills(:labia_m)
+    pick2.skills << skills(:persuasao_m)
+    pick2.skills << skills(:charme_m)
+    pick2.skills << skills(:intimidacao_m)
+
+    assert pick2.save
+  end
 end

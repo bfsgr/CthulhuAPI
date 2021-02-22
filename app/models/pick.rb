@@ -9,7 +9,7 @@ class Pick < ApplicationRecord
         greater_than: 0
     }
     validates :pickAny, inclusion: [true, false]
-    validates :name, presence: true, :length => { :in => 5..50 }
+    validates :name, presence: true, :length => { :in => 5..50 }, uniqueness: { scope: :game_set }
 
     validate :check_if_skills_are_in_gameset, :check_minimum_skills
 

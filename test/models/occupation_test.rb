@@ -70,8 +70,29 @@ class OccupationTest < ActiveSupport::TestCase
   end
 
   test "occupation should not save with picks from different game set" do
-    oc = Occupation.new(name: "Advogado", creditLevel: [30, 70], calcType: "EDUx4", game_set: game_sets(:default))
+    oc = Occupation.new(name: "Advogado", creditLevel: [30, 70], calcType: "EDUx4", game_set: game_sets(:default))  
     oc.picks << picks(:interpessoal_modern)
     assert_not oc.save
   end
+  
+  test "two occupations should not save with the same name in the same game set" do
+    oc1 = Occupation.new(name: "Advogado", creditLevel: [30, 70], calcType: "EDUx4", game_set: game_sets(:default))  
+    
+    assert oc1.save
+    
+    oc2 = Occupation.new(name: "Advogado", creditLevel: [30, 70], calcType: "EDUx4", game_set: game_sets(:default))  
+    
+    assert_not oc2.save
+  end
+
+  test "two occupations should save with the same name in different game sets" do
+    oc1 = Occupation.new(name: "Advogado", creditLevel: [30, 70], calcType: "EDUx4", game_set: game_sets(:default))  
+    
+    assert oc1.save
+    
+    oc2 = Occupation.new(name: "Advogado", creditLevel: [30, 70], calcType: "EDUx4", game_set: game_sets(:modern))  
+    
+    assert oc2.save
+  end
+
 end

@@ -3,7 +3,7 @@ class Skill < ApplicationRecord
     has_and_belongs_to_many :picks
     belongs_to :game_set, dependent: :destroy
 
-    validates :name, :presence => true, :length => { :in => 4..50 }
+    validates :name, :presence => true, :length => { :in => 4..50 }, uniqueness: { scope: :game_set }
     validates :baseValue, :presence => true, numericality: {
         only_integer: true,
         less_than: 100,

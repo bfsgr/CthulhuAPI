@@ -3,7 +3,7 @@ class Occupation < ApplicationRecord
     has_and_belongs_to_many :picks
     belongs_to :game_set, dependent: :destroy
 
-    validates :name, presence: true, :length => { in: 5..25 }
+    validates :name, presence: true, :length => { in: 5..25 }, uniqueness: { scope: :game_set }
     validates :calcType, presence: true
     validates :creditLevel, presence: true, :length => { is: 2 }
 
