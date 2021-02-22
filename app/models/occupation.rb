@@ -7,14 +7,26 @@ class Occupation < ApplicationRecord
     validates :calcType, presence: true
     validates :creditLevel, presence: true, :length => { is: 2 }
 
-    validate :validate_creditLevel, :check_if_skills_are_in_gameset
+    validate :validate_creditLevel, :check_if_skills_are_in_gameset, :check_if_picks_are_in_gameset
+
+    def check_if_picks_are_in_gameset
+        not_in_game_set = false
+        
+        self.picks.each do |p|
+            not_in_game_set = true if p.game_set_id != self.game_set_id
+        end
+        
+        errors.add(:picks, 'should be in the same game set') if not_in_game_set
+    end
 
     def check_if_skills_are_in_gameset
+        not_in_game_set = false
+
         self.skills.each do |s|
-            if s.game_set_id != self.game_set_id
-                errors.add(:skills, 'skill are not in same game set')  
-            end
+            not_in_game_set = true if s.game_set_id != self.game_set_id
         end
+
+        errors.add(:skills, 'are not in same game set') if not_in_game_set
     end
 
     def validate_creditLevel
@@ -32,8 +44,8 @@ class Occupation < ApplicationRecord
 
             sorted = self.creditLevel.sort if all_int
             
-            errors.add(:creditLevel, "credit level should be int") unless all_int
-            errors.add(:creditLevel, "credit level should be 2 integers sorted") unless sorted == self.creditLevel
+            errors.add(:creditLevel, "should be int") unless all_int
+            errors.add(:creditLevel, "should be 2 integers sorted") unless sorted == self.creditLevel
 
         end
     end
