@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_162609) do
+ActiveRecord::Schema.define(version: 2021_02_22_182034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_162609) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "game_set_id"
     t.index ["game_set_id"], name: "index_occupations_on_game_set_id"
+    t.index ["name", "game_set_id"], name: "index_occupations_on_name_and_game_set_id", unique: true
   end
 
   create_table "occupations_picks", id: false, force: :cascade do |t|
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_162609) do
     t.bigint "game_set_id"
     t.string "name"
     t.index ["game_set_id"], name: "index_picks_on_game_set_id"
+    t.index ["name", "game_set_id"], name: "index_picks_on_name_and_game_set_id", unique: true
   end
 
   create_table "picks_skills", id: false, force: :cascade do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_162609) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "game_set_id"
     t.index ["game_set_id"], name: "index_skills_on_game_set_id"
+    t.index ["name", "game_set_id"], name: "index_skills_on_name_and_game_set_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
