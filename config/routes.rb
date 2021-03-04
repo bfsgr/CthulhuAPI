@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users, defaults: { format: :json }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :occupations
-  resources :skills
-  resources :picks
+  scope :api do
+    devise_for :users, path: 'user', defaults: { format: :json }, controllers: {
+      registrations: 'users/registrations'
+    }
+  
+    resources :occupations
+    resources :skills
+    resources :picks
+  
+  end
+
 end
