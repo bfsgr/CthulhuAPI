@@ -1,0 +1,11 @@
+Lint/SuppressedException:
+  Enabled: false
+  
+Layout/IndentationStyle:
+  EnforcedStyle: tabs
+
+Layout/IndentationWidth:
+  Width: 1
+
+Style/Not:
+  Enabled: false
