@@ -27,7 +27,7 @@ class Pick < ApplicationRecord
 	def check_minimum_skills
 		if not pickAny
 			errors.add(:skills, 'not enough skills to pick') if skills.length <= numberOfPicks
-		elsif skills.empty?
+		elsif not skills.empty?
 			errors.add(:skills, "shouldn't have skills since pickAny is true")
 		end
 	rescue ArgumentError

@@ -17,7 +17,7 @@ class Occupation < ApplicationRecord
 		greater_than: 0
 	}
 
-	validate :validate_creditLevel, :check_if_skills_are_in_gameset, :check_if_picks_are_in_gameset
+	validate :validate_credit_level, :check_if_skills_are_in_gameset, :check_if_picks_are_in_gameset
 
 	def check_if_picks_are_in_gameset
 		not_in_game_set = false
