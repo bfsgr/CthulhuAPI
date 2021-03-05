@@ -34,3 +34,4 @@
 local_env.yml
 .idea
 .vscode
+coverage/*
