@@ -4,7 +4,7 @@ class Occupation < ApplicationRecord
 	belongs_to :game_set, dependent: :destroy
 
 	validates :name, presence: true, length: { in: 5..25 }, uniqueness: { scope: :game_set }
-	validates :calcType, presence: true
+	validates :calc_type, presence: true
 	validates :min_credit, presence: true, numericality: {
 		only_integer: true,
 		less_than: 100,

@@ -4,7 +4,7 @@ class Skill < ApplicationRecord
 	belongs_to :game_set, dependent: :destroy
 
 	validates :name, presence: true, length: { in: 4..50 }, uniqueness: { scope: :game_set }
-	validates :baseValue, presence: true, numericality: {
+	validates :base_value, presence: true, numericality: {
 		only_integer: true,
 		less_than: 100,
 		greater_than_or_equal_to: 0
