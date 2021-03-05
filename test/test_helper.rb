@@ -3,7 +3,6 @@ require 'simplecov'
 SimpleCov.start :rails
 
 require_relative '../config/environment'
-Rails.application.eager_load!
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
