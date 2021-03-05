@@ -44,8 +44,28 @@ class OccupationTest < ActiveSupport::TestCase
       assert_not oc.save
     end
 
-  test "occupation should not save with creditLevel outside of 1..99 range" do
-    oc = Occupation.new(name: "Advogado",  min_credit: 0, max_credit: 102, calcType: "EDUx4",  game_set: game_sets(:default))
+  test "occupation should not save with min credit less than 1" do
+    oc = Occupation.new(name: "Advogado",  min_credit: 0, max_credit: 50, calcType: "EDUx4",  game_set: game_sets(:default))
+    assert_not oc.save
+  end
+  
+  test "occupation should not save with min credit greather than 99" do
+    oc = Occupation.new(name: "Advogado",  min_credit: 102, max_credit: 50, calcType: "EDUx4",  game_set: game_sets(:default))
+    assert_not oc.save
+  end
+
+  test "occupation should not save with max credit less than 1" do
+    oc = Occupation.new(name: "Advogado",  min_credit: 20, max_credit: 0, calcType: "EDUx4",  game_set: game_sets(:default))
+    assert_not oc.save
+  end
+  
+  test "occupation should not save with max credit greather than 99" do
+    oc = Occupation.new(name: "Advogado",  min_credit: 10, max_credit: 100, calcType: "EDUx4",  game_set: game_sets(:default))
+    assert_not oc.save
+  end
+  
+  test "occupation should not save with min credit greather than max credit" do
+    oc = Occupation.new(name: "Advogado",  min_credit: 50, max_credit: 20, calcType: "EDUx4",  game_set: game_sets(:default))
     assert_not oc.save
   end
   
