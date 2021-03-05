@@ -20,23 +20,21 @@ class Occupation < ApplicationRecord
 	validate :validate_credit_level, :check_if_skills_are_in_gameset, :check_if_picks_are_in_gameset
 
 	def check_if_picks_are_in_gameset
-		not_in_game_set = false
-
 		picks.each do |p|
-			not_in_game_set = true if p.game_set_id != game_set_id
+			if p.game_set_id != game_set_id
+				errors.add(:picks, 'should be in the same game set')
+				break
+			end
 		end
-
-		errors.add(:picks, 'should be in the same game set') if not_in_game_set
 	end
 
 	def check_if_skills_are_in_gameset
-		not_in_game_set = false
-
 		skills.each do |s|
-			not_in_game_set = true if s.game_set_id != game_set_id
+			if s.game_set_id != game_set_id
+				errors.add(:skills, 'are not in same game set')
+				break
+			end
 		end
-
-		errors.add(:skills, 'are not in same game set') if not_in_game_set
 	end
 
 	def validate_credit_level
