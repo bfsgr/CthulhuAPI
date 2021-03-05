@@ -7,4 +7,5 @@
 first: 
   username: bfsgr
   email: bfsgr@example.com
-  encrypted_password: asudhuhoqwidjasuhduasd
+  encrypted_password: <%= SecureRandom.urlsafe_base64 %>
+  jti: <%= SecureRandom.uuid %>
