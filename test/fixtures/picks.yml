@@ -2,14 +2,14 @@
 
 interpessoal:
   name: "2 Interpessoais"
-  numberOfPicks: 2
-  pickAny: false
+  number_of_picks: 2
+  pick_any: false
   game_set: default
   skills: [labia, persuasao, intimidacao, charme]
 
 interpessoal_modern:
   name: "2 Interpessoais"
-  numberOfPicks: 2
-  pickAny: false
+  number_of_picks: 2
+  pick_any: false
   game_set: modern
   skills: [labia_m, persuasao_m, intimidacao_m, charme_m]

@@ -2,52 +2,52 @@
 
 briga:
   name: "Briga"
-  baseValue: 25
+  base_value: 25
   game_set: default
 
 labia:
   name: "Lábia"
-  baseValue: 5
+  base_value: 5
   game_set: default
 
 persuasao:
   name: "Persuasão"
-  baseValue: 10
+  base_value: 10
   game_set: default
 
 intimidacao:
   name: "Intimidação"
-  baseValue: 15
+  base_value: 15
   game_set: default
 
 charme:
   name: "Charme"
-  baseValue: 15
+  base_value: 15
   game_set: default
 
 # game set 2
 
 computadores:
   name: "Usar computadores"
-  baseValue: 5
+  base_value: 5
   game_set: modern
 
 labia_m:
   name: "Lábia"
-  baseValue: 5
+  base_value: 5
   game_set: modern
 
 persuasao_m:
   name: "Persuasão"
-  baseValue: 10
+  base_value: 10
   game_set: modern
 
 intimidacao_m:
   name: "Intimidação"
-  baseValue: 15
+  base_value: 15
   game_set: modern
 
 charme_m:
   name: "Charme"
-  baseValue: 15
+  base_value: 15
   game_set: modern
