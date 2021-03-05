@@ -1,8 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
+require 'simplecov'
 SimpleCov.start :rails
-Rails.application.eager_load!
 
 require_relative '../config/environment'
+Rails.application.eager_load!
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
