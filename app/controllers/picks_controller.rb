@@ -6,11 +6,15 @@ class PicksController < ApplicationController
 		render 'index'
 	end
 
-	def show; end
+	def show
+	end
 
-	def create; end
+	def create
+	end
 
-	def update; end
+	def update
+	end
 
-	def destroy; end
+	def destroy
+	end
 end

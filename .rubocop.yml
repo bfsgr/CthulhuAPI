@@ -9,3 +9,6 @@ Layout/IndentationWidth:
 
 Style/Not:
   Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
