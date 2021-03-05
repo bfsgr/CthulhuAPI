@@ -18,3 +18,9 @@ Metrics/PerceivedComplexity:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/AndOr:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 25
