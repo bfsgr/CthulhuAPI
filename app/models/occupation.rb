@@ -5,7 +5,17 @@ class Occupation < ApplicationRecord
 
     validates :name, presence: true, :length => { in: 5..25 }, uniqueness: { scope: :game_set }
     validates :calcType, presence: true
-    validates :creditLevel, presence: true, :length => { is: 2 }
+    validates :min_credit, presence: true, numericality: { 
+        only_integer: true,
+        less_than: 100,
+        greater_than: 0
+    }
+
+    validates :max_credit, presence: true, numericality: { 
+        only_integer: true,
+        less_than: 100,
+        greater_than: 0
+    }
 
     validate :validate_creditLevel, :check_if_skills_are_in_gameset, :check_if_picks_are_in_gameset
 
@@ -30,23 +40,10 @@ class Occupation < ApplicationRecord
     end
 
     def validate_creditLevel
-        if self.creditLevel.length == 2
-            
-            all_int = true
-            
-            self.creditLevel.each do |c|
-                if c.is_a?(Integer) 
-                    errors.add(:creditLevel, "#{c} should be within 1 and 99") unless c > 0 && c < 100
-                else
-                    all_int = false
-                end
-            end  
-
-            sorted = self.creditLevel.sort if all_int
-            
-            errors.add(:creditLevel, "should be int") unless all_int
-            errors.add(:creditLevel, "should be 2 integers sorted") unless sorted == self.creditLevel
-
+        if self.min_credit > self.max_credit
+            errors.add(:min_credit, "should be less or equal than max credit") 
         end
+
+        rescue NoMethodError
     end
 end
