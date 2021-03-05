@@ -46,7 +46,7 @@ Devise.setup do |config|
 	# session. If you need permissions, you should implement that in a before filter.
 	# You can also supply a hash where the value is a boolean determining whether
 	# or not authentication should be aborted when the value is not present.
-	config.authentication_keys = %i[email username]
+	config.authentication_keys = %i[username]
 
 	# Configure parameters from the request object used for authentication. Each entry
 	# given should be a request method and it will automatically be passed to the
@@ -331,7 +331,7 @@ class FailureMessagesApp < Devise::FailureApp
 	end
 
 	def http_auth_body
-		{ status: status, errors: [i18n_message] }.to_json
+		{ errors: [i18n_message] }.to_json
 	end
 
 	def request_format
