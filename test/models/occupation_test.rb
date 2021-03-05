@@ -28,7 +28,7 @@ class OccupationTest < ActiveSupport::TestCase
 		oc = Occupation.new(name: 'Advogado', min_credit: 30, max_credit: 70, calcType: 'EDUx4')
 		assert_not oc.save
 	end
-	bundler
+
 	test 'occupation should not save with a name less than 5 characters' do
 		oc = Occupation.new(name: '', min_credit: 30, max_credit: 70, calcType: 'EDUx4', game_set: game_sets(:default))
 		assert_not oc.save
