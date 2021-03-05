@@ -35,3 +35,4 @@ local_env.yml
 .idea
 .vscode
 coverage/*
+db/test/

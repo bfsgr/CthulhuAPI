@@ -25,7 +25,8 @@ ActiveRecord::Schema.define(version: 2021_02_22_182034) do
 
   create_table "occupations", force: :cascade do |t|
     t.string "name"
-    t.integer "creditLevel", default: [], array: true
+    t.integer "min_credit"
+    t.integer "max_credit"
     t.string "calcType"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
