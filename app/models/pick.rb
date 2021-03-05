@@ -11,10 +11,10 @@ class Pick < ApplicationRecord
 	validates :pickAny, inclusion: [true, false]
 	validates :name, presence: true, length: { in: 5..50 }, uniqueness: { scope: :game_set }
 
-	validate :check_if_skills_are_in_gameset, :check_minimum_skills
+	validate :skills_are_in_gameset, :empty_skills_with_pick_any, :enough_skills_to_pick
 
 	# check if the skills belong to the same gameset as the pick
-	def check_if_skills_are_in_gameset
+	def skills_are_in_gameset
 		return if pickAny
 
 		skills.each do |s|
@@ -22,14 +22,15 @@ class Pick < ApplicationRecord
 		end
 	end
 
-	# check if the number of skills associated with this pick is correct given
-	# the number of picks and the pick any flag
-	def check_minimum_skills
-		if not pickAny
-			errors.add(:skills, 'not enough skills to pick') if skills.length <= numberOfPicks
-		elsif not skills.empty?
-			errors.add(:skills, "shouldn't have skills since pickAny is true")
-		end
+	# check if skills are empty if pickAny is true
+	def empty_skills_with_pick_any
+		errors.add(:skills, "shouldn't have skills since pickAny is true") if pickAny and not skills.empty?
+	rescue ArgumentError
+	end
+
+	# check if there are enough skills to pick when pickAny is false
+	def enough_skills_to_pick
+		errors.add(:skills, 'not enough skills to pick') if not pickAny and skills.length <= numberOfPicks
 	rescue ArgumentError
 	end
 end
