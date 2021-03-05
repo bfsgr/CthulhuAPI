@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_222_182_034) do
+ActiveRecord::Schema.define(version: 20_210_305_175_328) do
 	# These are extensions that must be enabled in order to support this database
 	enable_extension 'plpgsql'
 
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20_210_222_182_034) do
 		t.string 'name'
 		t.integer 'min_credit'
 		t.integer 'max_credit'
-		t.string 'calcType'
+		t.string 'calc_type'
 		t.datetime 'created_at', precision: 6, null: false
 		t.datetime 'updated_at', precision: 6, null: false
 		t.bigint 'game_set_id'
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20_210_222_182_034) do
 	end
 
 	create_table 'picks', force: :cascade do |t|
-		t.integer 'numberOfPicks'
-		t.boolean 'pickAny'
+		t.integer 'number_of_picks'
+		t.boolean 'pick_any'
 		t.datetime 'created_at', precision: 6, null: false
 		t.datetime 'updated_at', precision: 6, null: false
 		t.bigint 'game_set_id'
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20_210_222_182_034) do
 
 	create_table 'skills', force: :cascade do |t|
 		t.string 'name'
-		t.integer 'baseValue'
+		t.integer 'base_value'
 		t.datetime 'created_at', precision: 6, null: false
 		t.datetime 'updated_at', precision: 6, null: false
 		t.bigint 'game_set_id'
