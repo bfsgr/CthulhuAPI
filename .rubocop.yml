@@ -12,3 +12,9 @@ Style/Not:
 
 Style/EmptyMethod:
   Enabled: false
+
+Metrics/PerceivedComplexity:
+    Max: 5
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
