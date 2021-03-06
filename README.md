@@ -5,3 +5,38 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/80d0c3e199eccd70f485/test_coverage)](https://codeclimate.com/github/bfsgr/CthulhuAPI/test_coverage)
 
 The API behind Cthulhu-vTable project
+
+# Configuration
+
+For production you have to add/update the following config with your host and port
+
+```ruby
+# config/environments/production.rb
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
+
+The code above is the default for development environment
+
+# Running
+
+First install all the required gems
+```
+bundle install
+```
+
+Then you can run the server in the desired environment (it defaults to development)
+```
+rails s
+```
+
+# Tests
+
+Due to [spring](https://github.com/rails/spring) messing up coverage mesurements run the tests with
+```
+bundle exec rake
+```
+Coverage results are under `coverage/` directory 
+
+# License
+
+AGPL-3.0
