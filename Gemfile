@@ -40,6 +40,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop','~> 1.11.0'
   gem 'rubocop-rails', '~> 2.9.1'
+  gem 'solargraph', '~> 0.40.4'
 end
 
 group :test do
