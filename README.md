@@ -31,7 +31,7 @@ rails s
 
 # Tests
 
-Due to [spring](https://github.com/rails/spring) messing up coverage mesurements run the tests with
+Due to [spring](https://github.com/rails/spring) messing up coverage mesurements run tests with
 ```
 bundle exec rake
 ```
