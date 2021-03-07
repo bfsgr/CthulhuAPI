@@ -1,10 +1,10 @@
 require 'simplecov'
-require 'simplecov-lcov'
+# require 'simplecov-lcov'
 
 SimpleCov.start 'rails' do
-  formatter SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::SimpleFormatter,
-                                                      SimpleCov::Formatter::LcovFormatter,
-                                                      SimpleCov::Formatter::HTMLFormatter])
+  # formatter SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::SimpleFormatter,
+  #                                                     SimpleCov::Formatter::LcovFormatter,
+  #                                                     SimpleCov::Formatter::HTMLFormatter])
 end
 ENV['RAILS_ENV'] ||= 'test'
 
