@@ -309,32 +309,7 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  config.warden do |manager|
-    manager.failure_app = FailureMessagesApp
-  end
-
   config.jwt do |jwt|
     jwt.secret = ENV['JWT_SECRET_KEY']
-  end
-end
-
-class FailureMessagesApp < Devise::FailureApp
-  def respond
-    http_auth
-  end
-
-  def http_auth
-    self.status = 401
-    headers['WWW-Authenticate'] = %(Bearer realm=#{Devise.http_authentication_realm.inspect}) if http_auth_header?
-    self.content_type = 'application/json'
-    self.response_body = http_auth_body
-  end
-
-  def http_auth_body
-    { errors: [i18n_message] }.to_json
-  end
-
-  def request_format
-    :json
   end
 end
