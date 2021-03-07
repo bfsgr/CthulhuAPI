@@ -309,7 +309,17 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
+  config.warden do |manager|
+    manager.failure_app = FailureMessagesApp
+  end
+
   config.jwt do |jwt|
     jwt.secret = ENV['JWT_SECRET_KEY']
+  end
+end
+
+class FailureMessagesApp < Devise::FailureApp
+  def request_format
+    :json
   end
 end
