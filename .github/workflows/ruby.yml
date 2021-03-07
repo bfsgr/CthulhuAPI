@@ -36,3 +36,6 @@ jobs:
               run: bundle exec rake
             - name: Upload coverage
               uses: paambaati/codeclimate-action@v2.7.5
+              with:
+                coverageLocations: |
+                    ${{github.workspace}}/coverage/.resultset.json
