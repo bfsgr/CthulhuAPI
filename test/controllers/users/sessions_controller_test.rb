@@ -19,5 +19,7 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     assert_response :unauthorized
+
+    assert_equal ({ error: 'Invalid Username or password.' }.as_json), JSON.parse(@response.body)
   end
 end
