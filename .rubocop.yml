@@ -1,25 +1,10 @@
 Lint/SuppressedException:
   Enabled: false
-  
-Layout/IndentationStyle:
-  EnforcedStyle: tabs
-
-Layout/IndentationWidth:
-  Width: 1
-
-Style/Not:
-  Enabled: false
-
-Style/EmptyMethod:
-  Enabled: false
 
 Metrics/PerceivedComplexity:
     Max: 5
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/AndOr:
   Enabled: false
 
 Metrics/MethodLength:
