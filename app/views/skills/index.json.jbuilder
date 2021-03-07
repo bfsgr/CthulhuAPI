@@ -1,4 +1,4 @@
 json.array! @skills do |skill|
   json.name skill.name
-  json.baseValue skill.baseValue
+  json.base_value skill.base_value
 end
