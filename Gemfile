@@ -29,24 +29,25 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors', '~> 1.1.1'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
+	gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
-  gem 'listen', '~> 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 2.1.1'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rubocop','~> 1.11.0'
-  gem 'rubocop-rails', '~> 2.9.1'
-  gem 'solargraph', '~> 0.40.4'
+	gem 'listen', '~> 3.2'
+	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+	gem 'rubocop', '~> 1.11.0'
+	gem 'rubocop-rails', '~> 2.9.1'
+	gem 'solargraph', '~> 0.40.4'
+	gem 'spring', '~> 2.1.1'
+	gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
-  gem 'simplecov', '~> 0.21.2'
-  gem 'sqlite3', '~> 1.4.2'
+	gem 'simplecov', '~> 0.21.2'
+	gem 'simplecov-lcov'
+	gem 'sqlite3', '~> 1.4.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
