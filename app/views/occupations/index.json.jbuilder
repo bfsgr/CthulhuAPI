@@ -1,6 +1,6 @@
 json.array! @occupations do |ocp|
   json.name ocp.name
-  json.array! [ocp.min_credit, ocp.max_credit]
+  json.credit_level! [ocp.min_credit, ocp.max_credit]
   json.calc_type ocp.calc_type
 
   json.skills(ocp.skills) do |skill|
