@@ -9,6 +9,7 @@ class UserSessionsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     assert_response :created
+    assert_not_nil @response.headers['Authorization']
   end
 
   test 'user does not sign in due to invalid password' do
