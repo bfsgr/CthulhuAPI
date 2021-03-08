@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :occupations
     resources :skills
     resources :picks
+    resources :game_sets
   end
 end
