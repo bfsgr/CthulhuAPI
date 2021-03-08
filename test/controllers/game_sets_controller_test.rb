@@ -30,5 +30,17 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:first)
     get "/api/game_sets/#{identifier}", xhr: true
     assert_response :ok
+
+    gs = GameSet.find(identifier)
+    actual = JSON.parse(@response.body)
+
+    expected = { name: gs.name,
+                 occupations: gs.occupations.length,
+                 picks: gs.picks.length,
+                 skills: gs.skills.length,
+                 created_at: gs.created_at,
+                 updated_at: gs.updated_at }
+
+    assert_equal expected.as_json, actual
   end
 end
