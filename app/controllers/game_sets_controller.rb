@@ -1,7 +1,7 @@
 class GameSetsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @game_sets = GameSet.all
+    @game_sets = GameSet.where(user: current_user)
     render 'index'
   end
 
