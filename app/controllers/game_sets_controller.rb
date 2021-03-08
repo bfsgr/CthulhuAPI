@@ -5,7 +5,11 @@ class GameSetsController < ApplicationController
     render 'index'
   end
 
-  def show; end
+  def show
+    id = params['id']
+    @game_set = GameSet.find(id)
+    render 'show'
+  end
 
   def create; end
 
