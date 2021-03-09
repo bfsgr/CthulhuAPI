@@ -39,6 +39,6 @@ class Occupation < ApplicationRecord
 
   def validate_credit_level
     errors.add(:min_credit, 'should be less or equal than max credit') if min_credit > max_credit
-  rescue NoMethodError
+  rescue NoMethodError, ArgumentError
   end
 end
