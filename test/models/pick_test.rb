@@ -2,7 +2,10 @@ require 'test_helper'
 
 class PickTest < ActiveSupport::TestCase
   def setup
-    @pick = Pick.new(name: 'One interpersonal', number_of_picks: 1, pick_any: false, game_set: game_sets(:default))
+    @pick = Pick.new(name: 'One interpersonal',
+                     number_of_picks: 1,
+                     pick_any: false,
+                     game_set: game_sets(:default))
   end
 
   test 'pick saves correctly' do
