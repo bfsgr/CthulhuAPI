@@ -5,5 +5,5 @@ class GameSet < ApplicationRecord
 
   belongs_to :user, dependent: :destroy
 
-  validates :name, presence: true, length: { in: 5..25 }
+  validates :name, presence: true, length: { in: 3..25 }
 end

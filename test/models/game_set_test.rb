@@ -15,8 +15,8 @@ class GameSetTest < ActiveSupport::TestCase
     assert_not @gs.save
   end
 
-  test 'game set should not save with name less than 5 characters' do
-    @gs.name = 'ana'
+  test 'game set should not save with name less than 3 characters' do
+    @gs.name = 'an'
     assert_not @gs.save
   end
 
