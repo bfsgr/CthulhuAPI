@@ -43,4 +43,33 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal expected.as_json, actual
   end
+
+  test 'create a game set correctly' do
+    sign_in users(:first)
+
+    post '/api/game_sets', xhr: true, params: {
+      game_set: { name: '1920' }
+    }
+
+    assert_response :created
+  end
+
+  test 'create a game set with errors' do
+    sign_in users(:first)
+
+    post '/api/game_sets', xhr: true, params: {
+      game_set: {}
+    }
+
+    assert_response :unprocessable_entity
+
+    gs = GameSet.new
+    gs.user = users(:first)
+    gs.valid? # => false
+
+    actual = JSON.parse(@response.body)
+    expected = { errors: gs.errors.to_hash }
+
+    assert_equal expected.as_json, actual
+  end
 end
