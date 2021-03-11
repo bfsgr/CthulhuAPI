@@ -13,7 +13,8 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     expected = []
 
     gs.each do |gameset|
-      expected.push({ id: gameset.id, name: gameset.name })
+      expected.push({ id: gameset.id, name: gameset.name, created_at: gameset.created_at,
+                      updated_at: gameset.updated_at })
     end
 
     assert_equal expected.as_json, actual
