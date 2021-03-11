@@ -16,14 +16,26 @@ class GameSetsController < ApplicationController
     @game_set.user = current_user
 
     if @game_set.save
-      response.headers['Location'] = request.original_url + game_set_path(@game_set)
-      head :created
+      head :created, location: game_set_path(@game_set)
     else
       render 'create', status: :unprocessable_entity
     end
   end
 
-  def update; end
+  def update
+    user = current_user
+    @game_set = GameSet.where(id: params[:id], user_id: user.id).first
+
+    return head :not_found unless @game_set
+
+    @game_set.name = permitted_params[:name]
+
+    if @game_set.save
+      head :ok, location: game_set_path(@game_set)
+    else
+      render 'create', status: :unprocessable_entity
+    end
+  end
 
   def destroy; end
 

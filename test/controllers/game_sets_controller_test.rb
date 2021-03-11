@@ -72,4 +72,28 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal expected.as_json, actual
   end
+
+  test 'update game set corretly' do
+    sign_in users(:first)
+
+    patch game_set_path(game_sets(:default)), xhr: true, params: {
+      game_set: {
+        name: 'GameSet-1'
+      }
+    }
+
+    assert_response :ok
+  end
+
+  test 'update fails due to not found resource' do
+    sign_in users(:first)
+
+    patch '/api/game_sets/89', xhr: true, params: {
+      game_set: {
+        name: 'Home-1'
+      }
+    }
+
+    assert_response :not_found
+  end
 end
