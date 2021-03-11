@@ -28,9 +28,7 @@ class GameSetsController < ApplicationController
 
     return head :not_found unless @game_set
 
-    @game_set.name = permitted_params[:name]
-
-    if @game_set.save
+    if @game_set.update(permitted_params)
       head :ok, location: game_set_path(@game_set)
     else
       render 'create', status: :unprocessable_entity
