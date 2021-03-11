@@ -99,4 +99,24 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :not_found
   end
+
+  test 'update fails due to validation errors' do
+    sign_in users(:first)
+
+    patch game_set_path(game_sets(:default)), xhr: true, params: {
+      game_set: {
+        name: '1'
+      }
+    }
+
+    assert_response :unprocessable_entity
+
+    gs = GameSet.new(name: '1', user: users(:first))
+    gs.valid? # => false
+
+    actual = JSON.parse(@response.body)
+    expected = { errors: gs.errors.to_hash }
+
+    assert_equal expected.as_json, actual
+  end
 end
