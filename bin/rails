@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 begin
-  load File.expand_path('spring', __dir__) unless ARGV[0] == 'test'
+  load File.expand_path('spring', __dir__) unless ARGV[0] == 'test' || ARGV[0] == 't'
 rescue LoadError => e
   raise unless e.message.include?('spring')
 end
