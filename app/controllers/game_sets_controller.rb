@@ -1,7 +1,11 @@
 class GameSetsController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user!
+  after_action { pagy_headers_merge(@pagy) if @pagy }
+
   def index
-    @game_sets = GameSet.where(user: current_user)
+    @pagy, @game_sets = pagy(GameSet.where(user: current_user))
     render 'index'
   end
 

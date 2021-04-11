@@ -8,7 +8,7 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     get '/api/game_sets', xhr: true
     assert_response :ok
 
-    gs = GameSet.where(user: users(:first))
+    gs = GameSet.where(user: users(:first)).limit(20)
     actual = JSON.parse(@response.body)
     expected = []
 
@@ -18,7 +18,6 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
                       created_at: gameset.created_at,
                       updated_at: gameset.updated_at })
     end
-
     assert_equal expected.as_json, actual
   end
 
