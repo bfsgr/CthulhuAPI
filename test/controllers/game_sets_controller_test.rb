@@ -21,6 +21,16 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     assert_equal expected.as_json, actual
   end
 
+  test 'if name query returns correctly' do
+    sign_in users(:first)
+    get '/api/game_sets?q=Default', xhr: true
+
+    actual = JSON.parse(@response.body)
+    expected = [game_sets(:default)]
+
+    assert_equal expected.as_json, actual
+  end
+
   test 'show details of any given game set' do
     sign_in users(:first)
     get '/api/game_sets', xhr: true
