@@ -6,6 +6,8 @@
 
 The API behind Cthulhu-vTable project
 
+[Documentation](https://app.swaggerhub.com/apis/bfsgr/CthulhuAPI/0.2.0)
+
 # Configuration
 
 For production you have to add/update the following config with your host and port
