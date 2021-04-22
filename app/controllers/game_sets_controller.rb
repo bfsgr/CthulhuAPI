@@ -15,8 +15,7 @@ class GameSetsController < ApplicationController
   end
 
   def show
-    id = params['id']
-    @game_set = GameSet.find(id)
+    @game_set = GameSet.where(user: current_user).find(params[:id])
     render 'show'
   end
 
@@ -32,10 +31,7 @@ class GameSetsController < ApplicationController
   end
 
   def update
-    user = current_user
-    @game_set = GameSet.where(id: params[:id], user_id: user.id).first
-
-    return head :not_found unless @game_set
+    @game_set = GameSet.where(user: current_user).find(params[:id])
 
     if @game_set.update(permitted_params)
       render 'show', status: :ok, location: game_set_path(@game_set)
@@ -44,7 +40,9 @@ class GameSetsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    GameSet.where(user: current_user).find(params[:id]).delete
+  end
 
   private
 
