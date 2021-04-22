@@ -15,6 +15,9 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     gs.each do |gameset|
       expected.push({ id: gameset.id,
                       name: gameset.name,
+                      occupations: gameset.occupations.length,
+                      picks: gameset.picks.length,
+                      skills: gameset.skills.length,
                       created_at: gameset.created_at,
                       updated_at: gameset.updated_at })
     end
@@ -26,7 +29,14 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     get '/api/game_sets?q=Default', xhr: true
 
     actual = JSON.parse(@response.body)
-    expected = [game_sets(:default)]
+    gameset = game_sets(:default)
+    expected = [{ id: gameset.id,
+                  name: gameset.name,
+                  occupations: gameset.occupations.length,
+                  picks: gameset.picks.length,
+                  skills: gameset.skills.length,
+                  created_at: gameset.created_at,
+                  updated_at: gameset.updated_at }]
 
     assert_equal expected.as_json, actual
   end
