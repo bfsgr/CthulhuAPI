@@ -66,6 +66,13 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     assert_equal expected.as_json, actual
   end
 
+  test 'show details of unexistent gameset' do
+    sign_in users(:first)
+    assert_raises ActiveRecord::RecordNotFound do
+      get '/api/game_sets/1', xhr: true
+    end
+  end
+
   test 'create a game set correctly' do
     sign_in users(:first)
 
@@ -110,13 +117,13 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
   test 'update fails due to not found resource' do
     sign_in users(:first)
 
-    patch '/api/game_sets/89', xhr: true, params: {
-      game_set: {
-        name: 'Home-1'
+    assert_raises ActiveRecord::RecordNotFound do
+      patch '/api/game_sets/89', xhr: true, params: {
+        game_set: {
+          name: 'Home-1'
+        }
       }
-    }
-
-    assert_response :not_found
+    end
   end
 
   test 'update fails due to validation errors' do
@@ -137,5 +144,21 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     expected = { errors: gs.errors.to_hash }
 
     assert_equal expected.as_json, actual
+  end
+
+  test 'remove a gameset' do
+    sign_in users(:first)
+
+    delete game_set_path(game_sets(:default)), xhr: true
+
+    assert_response :no_content
+  end
+
+  test 'remove a unexistent gameset' do
+    sign_in users(:first)
+
+    assert_raises ActiveRecord::RecordNotFound do
+      delete '/api/game_sets/1', xhr: true
+    end
   end
 end
