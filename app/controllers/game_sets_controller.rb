@@ -25,7 +25,7 @@ class GameSetsController < ApplicationController
     @game_set.user = current_user
 
     if @game_set.save
-      render json: @game_set, status: :created, location: game_set_path(@game_set)
+      render 'show', status: :created, location: game_set_path(@game_set)
     else
       render 'create', status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class GameSetsController < ApplicationController
     return head :not_found unless @game_set
 
     if @game_set.update(permitted_params)
-      render json: @game_set, status: :ok, location: game_set_path(@game_set)
+      render 'show', status: :ok, location: game_set_path(@game_set)
     else
       render 'create', status: :unprocessable_entity
     end
