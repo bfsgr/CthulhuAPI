@@ -6,7 +6,7 @@
 
 The API behind Cthulhu-vTable project
 
-[Documentation](https://app.swaggerhub.com/apis/bfsgr/CthulhuAPI/0.2.0)
+[Documentation](https://app.swaggerhub.com/apis-docs/bfsgr/CthulhuAPI/)
 
 # Configuration
 
