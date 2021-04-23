@@ -1,4 +1,5 @@
 json.array! @skills do |skill|
+  json.id skill.id
   json.name skill.name
   json.base_value skill.base_value
   json.created_at skill.created_at
