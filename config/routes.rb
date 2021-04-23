@@ -5,9 +5,10 @@ Rails.application.routes.draw do
       sessions: 'users/sessions'
     }
 
-    resources :occupations
-    resources :skills
-    resources :picks
-    resources :game_sets
+    resources :game_sets, shallow: true do
+      resources :occupations
+      resources :skills
+      resources :picks
+    end
   end
 end
