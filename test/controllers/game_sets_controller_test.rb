@@ -24,23 +24,6 @@ class GameSetsControllerTest < ActionDispatch::IntegrationTest
     assert_equal expected.as_json, actual
   end
 
-  test 'if name query returns correctly' do
-    sign_in users(:first)
-    get '/api/game_sets?q=Default', xhr: true
-
-    actual = JSON.parse(@response.body)
-    gameset = game_sets(:default)
-    expected = [{ id: gameset.id,
-                  name: gameset.name,
-                  occupations: gameset.occupations.length,
-                  picks: gameset.picks.length,
-                  skills: gameset.skills.length,
-                  created_at: gameset.created_at,
-                  updated_at: gameset.updated_at }]
-
-    assert_equal expected.as_json, actual
-  end
-
   test 'show details of any given game set' do
     sign_in users(:first)
     get '/api/game_sets', xhr: true

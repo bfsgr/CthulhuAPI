@@ -5,12 +5,7 @@ class GameSetsController < ApplicationController
   after_action { pagy_headers_merge(@pagy) if @pagy }
 
   def index
-    query = GameSet.where(user: current_user)
-    if params['q'].present?
-      query = query.merge(GameSet.where('lower(name) LIKE ?',
-                                        "%#{params['q'].downcase}%"))
-    end
-    @pagy, @game_sets = pagy(query)
+    @pagy, @game_sets = pagy(GameSet.where(user: current_user))
     render 'index'
   end
 
