@@ -11,9 +11,24 @@ class SkillsController < ApplicationController
 
   def show; end
 
-  def create; end
+  def create
+    @skill = Skill.new(permitted_params)
+    @skill.game_set = GameSet.where(user: current_user).find(params[:game_set_id])
+
+    if @skill.save
+      render 'show', status: :created, location: skill_path(@skill)
+    else
+      render 'create', status: :unprocessable_entity
+    end
+  end
 
   def update; end
 
   def destroy; end
+
+  private
+
+  def permitted_params
+    params.require(:skill).permit(:name, :base_value)
+  end
 end
