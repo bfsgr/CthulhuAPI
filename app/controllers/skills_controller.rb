@@ -9,7 +9,10 @@ class SkillsController < ApplicationController
     render 'index'
   end
 
-  def show; end
+  def show
+    @skill = Skill.find_skill_with_user(current_user, params[:id])
+    render 'show'
+  end
 
   def create
     @skill = Skill.new(permitted_params)

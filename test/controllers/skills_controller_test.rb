@@ -61,4 +61,24 @@ class SkillsControllerTest < ActionDispatch::IntegrationTest
       }
     end
   end
+
+  test 'show skill correctly' do
+    sign_in users(:first)
+
+    get skill_path(skills(:briga)), xhr: true
+
+    assert_response :ok
+
+    actual = JSON.parse(@response.body)
+
+    assert_equal skills(:briga).as_json, actual
+  end
+
+  test 'show skill that does not belong to user' do
+    sign_in users(:second)
+
+    assert_raise ActiveRecord::RecordNotFound do
+      get skill_path(skills(:briga)), xhr: true
+    end
+  end
 end
