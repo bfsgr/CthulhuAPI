@@ -9,4 +9,12 @@ class Skill < ApplicationRecord
     less_than: 100,
     greater_than_or_equal_to: 0
   }
+
+  def self.find_skill_with_user(user, id)
+    skill = find(id)
+
+    raise ActiveRecord::RecordNotFound if skill.game_set.user != user
+
+    skill
+  end
 end

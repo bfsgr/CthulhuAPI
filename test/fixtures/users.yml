@@ -9,3 +9,9 @@ first:
   email: bfsgr@example.com
   encrypted_password: <%= BCrypt::Password.create("qwerty123") %>
   jti: <%= SecureRandom.uuid %>
+
+second:
+  username: example
+  email: example@example.com
+  encrypted_password: <%= BCrypt::Password.create("qwerty123") %>
+  jti: <%= SecureRandom.uuid %>

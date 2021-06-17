@@ -64,4 +64,15 @@ class SkillTest < ActiveSupport::TestCase
 
     assert skill2.save
   end
+
+  test 'find skill in a user scope' do
+    briga = Skill.find_skill_with_user(users(:first), skills(:briga).id)
+    assert_equal briga, skills(:briga)
+  end
+
+  test 'find skill in a user scope fails' do
+    assert_raise ActiveRecord::RecordNotFound do
+      Skill.find_skill_with_user(users(:second), skills(:briga).id)
+    end
+  end
 end
