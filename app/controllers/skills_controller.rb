@@ -5,7 +5,7 @@ class SkillsController < ApplicationController
   after_action { pagy_headers_merge(@pagy) if @pagy }
 
   def index
-    @pagy, @skills = pagy(GameSet.where(user: current_user).find(params[:game_set_id]).skills)
+    @pagy, @skills = pagy(current_user.game_sets.find(params[:game_set_id]).skills)
     render 'index'
   end
 
@@ -13,7 +13,7 @@ class SkillsController < ApplicationController
 
   def create
     @skill = Skill.new(permitted_params)
-    @skill.game_set = GameSet.where(user: current_user).find(params[:game_set_id])
+    @skill.game_set = current_user.game_sets.find(params[:game_set_id])
 
     if @skill.save
       render 'show', status: :created, location: skill_path(@skill)
