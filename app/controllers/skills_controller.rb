@@ -35,7 +35,10 @@ class SkillsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    skill = Skill.find_skill_with_user(current_user, params[:id])
+    skill.delete
+  end
 
   private
 

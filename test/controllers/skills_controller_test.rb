@@ -117,4 +117,20 @@ class SkillsControllerTest < ActionDispatch::IntegrationTest
       }
     end
   end
+
+  test 'delete skill' do
+    sign_in users(:first)
+
+    delete skill_path(skills(:briga)), xhr: true
+
+    assert_response :no_content
+  end
+
+  test 'delete unexistent skill' do
+    sign_in users(:first)
+
+    assert_raise ActiveRecord::RecordNotFound do
+      delete '/api/skills/172', xhr: true
+    end
+  end
 end
