@@ -81,4 +81,28 @@ class SkillsControllerTest < ActionDispatch::IntegrationTest
       get skill_path(skills(:briga)), xhr: true
     end
   end
+
+  test 'update skill correctly' do
+    sign_in users(:first)
+
+    patch skill_path(skills(:briga)), xhr: true, params: {
+      skill: {
+        base_value: 30
+      }
+    }
+
+    assert_response :ok
+  end
+
+  test 'update skill fails due to validation errors' do
+    sign_in users(:first)
+
+    put skill_path(skills(:briga)), xhr: true, params: {
+      skill: {
+        base_value: -1
+      }
+    }
+
+    assert_response :unprocessable_entity
+  end
 end

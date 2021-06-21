@@ -25,13 +25,23 @@ class SkillsController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    @skill = Skill.find_skill_with_user(current_user, params[:id])
+
+    if @skill.update(permitted_params)
+      render 'show', status: :ok, location: skill_path(@skill)
+    else
+      render 'create', status: :unprocessable_entity
+    end
+  end
 
   def destroy; end
 
   private
 
   def permitted_params
+    return {} if !params[:skill] || params[:skill].empty?
+
     params.require(:skill).permit(:name, :base_value)
   end
 end
