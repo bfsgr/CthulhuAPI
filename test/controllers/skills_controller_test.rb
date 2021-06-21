@@ -105,4 +105,16 @@ class SkillsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
   end
+
+  test 'update unexistent skill' do
+    sign_in users(:first)
+
+    assert_raise ActiveRecord::RecordNotFound do
+      patch '/api/skills/172', xhr: true, params: {
+        skill: {
+          base_value: 10
+        }
+      }
+    end
+  end
 end
