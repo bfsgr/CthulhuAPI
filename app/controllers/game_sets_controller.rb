@@ -42,6 +42,8 @@ class GameSetsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:game_set).permit(:name) if params[:game_set] && !params[:game_set].empty?
+    return {} if !params[:game_set] || params[:game_set].empty?
+
+    params.require(:game_set).permit(:name)
   end
 end
